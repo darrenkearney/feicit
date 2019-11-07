@@ -8,4 +8,22 @@ Note, you are likey still being heavily tracked - but at least you are no longer
 
 Distributed with the GPL3 license.
 
+# Installation
+
+This is a python script that uses a few libraries.
+
+`pip install requests`
+`pip install html2text`
+
+# Usage
+
+This is experimental. This is dangerous stuff. Only use if you understand the risk and accept the license.
+
+This is run using python 3.
+
+`python3 feic.py`
+
+
+
+
 (C) 2019  Darren Kearney
