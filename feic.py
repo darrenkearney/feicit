@@ -16,68 +16,76 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-import click
 import html2text
-import messages as m
+import messages
 import requests
 
-def get_address_from_input():
-    # the user input parsing goes here
+class Feic:
 
-    address = ''
-    while (address == ''):
+    def __init__(self):
 
-        print(m.messages['warning'])
-        print('Enter "quit" to quit.')
-        address = input("URL > ")
-        print(address)
+        self.messages = messages.messages
 
-        if (address == 'quit' or address == 'exit' or address == '"quit"'):
-            print(m.messages['oktnxbye'])
-            exit()
+    def get_address_from_input(self):
+        # the user input parsing goes here
 
-        elif (address == 'show c'):
-            print(m.messages['gpl3_conditions'])
-            exit()
+        address = ''
+        while (address == ''):
 
-        elif (address == 'show w'):
-            print(m.messages['gpl3_warranty'])
-            exit()
-        
-        # add missing schema
-        if (address[:8] != 'https://' and address[:7] != 'http://'):
-            # default to https
-            address = 'https://' + address
+            print(self.messages['warning'])
+            print('Enter "quit" to quit.')
+            address = input('feicim URL > ')
+            print(address)
 
-    return address
+            # parse any user commands
+            if (address == 'quit' or address == 'exit' or address == '"quit"'):
+                print(self.messages['oktnxbye'])
+                exit()
 
+            elif (address == 'show c'):
+                print(self.messages['gpl3_conditions'])
+                exit()
 
-def get_contents(address):
-    # requests library 
-    # https://requests.readthedocs.io
-    r = requests.get(address)
+            elif (address == 'show w'):
+                print(self.messages['gpl3_warranty'])
+                exit()
+            
+            # add missing schema
+            if (address[:8] != 'https://' and address[:7] != 'http://'):
+                # default to https
+                address = 'https://' + address
 
-    return r.text
-
-
-def parse_content_to_md(content):
-    # https://pypi.org/project/html2text/
-    return html2text.html2text(content)
+        return address
 
 
-def main():
+    def get_contents(self, address):
+        # requests library 
+        # https://requests.readthedocs.io
+        r = requests.get(address)
 
-    print(m.messages['greeting'])
-    print(m.messages['description'])
-
-    try:
-        while True:
-
-            print(parse_content_to_md(get_contents(get_address_from_input())))
+        return r.text
 
 
-    except KeyboardInterrupt:
-        print(messages.oktnxbye)
+    def parse_content_to_md(self, content):
+        # https://pypi.org/project/html2text/
+        return html2text.html2text(content)
 
 
-main()
+    def main(self):
+
+        print(self.messages['greeting'])
+        print(self.messages['description'])
+
+        try:
+            while True:
+
+                print(self.parse_content_to_md(self.get_contents(self.get_address_from_input())))
+
+
+        except KeyboardInterrupt:
+            print(self.messages['oktnxbye'])
+
+
+if (__name__ == '__main__'):
+    app = Feic()
+    app.main()
