@@ -1,6 +1,6 @@
 # feicit
 
-Feicit is a command-line web browser that fetches html pages from URLs and converts them to Markdown. Now you can read your favourite websites in a way never-before intended by the developers.
+Feicit is a command-line web browser in pre-alpha stage that fetches html pages from URLs and converts them to Markdown. Now you can read your favourite websites in a way never-before intended by the developers.
 
 Enjoy the purity of plaintext,  without all the clutter of advertising, modals, popups, and without executing the mass of javascript snippets used to track all over the modern web.
 
