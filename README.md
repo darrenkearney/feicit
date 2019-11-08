@@ -13,6 +13,7 @@ Distributed with the GPL3 license.
 This is a python script that uses a few libraries.
 
 `pip install requests`
+
 `pip install html2text`
 
 # Usage
